@@ -1,0 +1,23 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+    <h1 class="col-10 offset-3">SignUp on Hotelwala</h1>
+    <div class="col-6 offset-3">
+        <form action="/signup" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="username" id="username" class="form-label">User name</label>
+                <input type="text" name="username" placeholder="Add a User name" class="form-control" required>
+                <div class="valid-feedback">Looks Good!</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" id="email" class="form-label">Email</label>
+                <input type="email" name="email" placeholder="Add a Email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" id="password" class="form-label">Password</label>
+                <input type="password" name="password" placeholder="Add a Password" class="form-control" required>
+            </div>
+            <button class="btn btn-success">Sign Up</button>
+        </form>
+    </div>
+</div>
