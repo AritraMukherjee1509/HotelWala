@@ -32,10 +32,10 @@
         </div>
     </div>
     <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
-    <div class="btns mb-3">
-        <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark offset-3 col-2 edit-btn">Edit</a>
-        <form method="POST" action="/listings/<%= listing._id%>?_method=DELETE">
-            <button class="btn btn-dark offset-3">Delete</button>
+    <div class="btns mb-3 row">
+        <a href="/<%= listing._id %>/edit" class="btn btn-danger offset-1 col-2 edit-btn">Edit</a>
+        <form method="POST" action="/<%= listing._id%>?_method=DELETE" class="offset-1 col-5">
+            <button class="btn btn-dark">Delete</button>
         </form>
     </div>
     <% } %>
@@ -43,7 +43,7 @@
         <% if (currUser) { %>
         <hr>
         <h4>Leave a Review</h4>
-        <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
+        <form action="/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
             <div class="mt-3">
                 <label for="rating" class="form-label">Rating</label>
                 <fieldset class="starability-slot">
@@ -75,15 +75,17 @@
         <div class="row">
             <p><b>All Reviews</b></p>
             <% for(review of listing.reviews) { %>
-                <div class="card col-5 ms-3 mb-5 ">
+                <div class="card col-5 ms-3 mb-5 py-3">
                     <div class="card-body">
                         <h5 class="card-title">@<%= review.author.username %></h5>
                         <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
                         <p class="card-text"><%= review.comment %></p>
                     </div>
-                    <form method="POST" class="my-3" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                        <button class=" btn btn-sm btn-dark">Delete</button>
-                    </form>
+                    <% if (currUser && currUser._id.equals(review.author._id)) { %>
+                        <form method="POST" class="my-3" action="/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                            <button class=" btn btn-sm btn-dark">Delete</button>
+                        </form>
+                    <% } %>
                 </div>
             <% } %>
         </div>

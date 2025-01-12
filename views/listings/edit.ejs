@@ -3,7 +3,7 @@
     <div class="row mt-3">
         <div class="col-8 offset-2">
             <h2>Edit a Listing</h2>
-            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+            <form method="POST" action="/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control" required>
@@ -22,6 +22,29 @@
                     <label for="image" class="form-label">Upload new Image</label>
                     <input type="file" name="listing[image.url]" class="form-control">
                 </div>
+                <div class="mb-3">
+                    <label for="tags" class="form-label">Tags</label>
+                    <select
+                        id="tags"
+                        name="listing[tags][]"
+                        class="form-control"
+                        multiple
+                        required
+                    >
+                        <option value="trending" <%= listing.tags.includes("trending") ? "selected" : "" %>>Trending</option>
+                        <option value="rooms" <%= listing.tags.includes("rooms") ? "selected" : "" %>>Rooms</option>
+                        <option value="iconic cities" <%= listing.tags.includes("iconic cities") ? "selected" : "" %>>Iconic Cities</option>
+                        <option value="mountains" <%= listing.tags.includes("mountains") ? "selected" : "" %>>Mountains</option>
+                        <option value="castles" <%= listing.tags.includes("castles") ? "selected" : "" %>>Castles</option>
+                        <option value="arctic" <%= listing.tags.includes("arctic") ? "selected" : "" %>>Arctic</option>
+                        <option value="camping" <%= listing.tags.includes("camping") ? "selected" : "" %>>Camping</option>
+                        <option value="woods" <%= listing.tags.includes("woods") ? "selected" : "" %>>Woods</option>
+                        <option value="farms" <%= listing.tags.includes("farms") ? "selected" : "" %>>Farms</option>
+                        <option value="domes" <%= listing.tags.includes("domes") ? "selected" : "" %>>Domes</option>
+                        <option value="boats" <%= listing.tags.includes("boats") ? "selected" : "" %>>Boats</option>
+                    </select>
+                </div>
+                
                 <div class="row">
                     <div class="mb-3 col-md-4">
                         <label for="price" class="form-label">Price</label>
@@ -43,4 +66,14 @@
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#tags').select2({
+                placeholder: "Select tags", // Placeholder text
+                allowClear: true, // Option to clear selections
+            });
+        });
+    </script>
+
 </body>

@@ -11,6 +11,8 @@ module.exports.listingSchema = Joi.object({
         country:Joi.string().required(),
         price:Joi.number().required().min(0),
         title:Joi.string().allow("", null),
+        tags:Joi.string().allow("", null),
+        tags: Joi.array().items(Joi.string()).allow(null).required(),
     }).required()
 })
 

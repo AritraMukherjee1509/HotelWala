@@ -9,6 +9,10 @@ body {
     flex: 1;
 }
 
+.dn {
+    display: none;
+}
+
 /* Navbar */
 .navbar {
     height: auto;
@@ -97,6 +101,17 @@ body {
     border: none !important;
 }
 
+.select2-search__field {
+    height: max-content !important;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    max-height: 1.5rem !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    padding: 0 5px !important;
+}
 /* Edit Page */
 .edit-btn {
     background-color: #fe424d !important;
